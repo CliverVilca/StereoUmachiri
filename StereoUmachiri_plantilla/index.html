@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radio Stereo Umachiri - 98.5 FM - Melgar, Puno</title>
+    <meta name="description" content="Radio Stereo Umachiri en vivo por Internet. Emisora peruana que transmite desde el distrito de Umachiri, provincia Melgar, Puno.">
+    <meta name="keywords" content="radio, umachiri, puno, melgar, 98.5 fm, peru, en vivo">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <img src="assets/images/logo.png" alt="Radio Stereo Umachiri" class="logo">
+                    <div class="logo-text">
+                        <h1>Radio Stereo Umachiri</h1>
+                        <span>98.5 FM - Melgar, Puno</span>
+                    </div>
+                </div>
+                
+                <div class="nav-menu" id="nav-menu">
+                    <ul class="nav-list">
+                        <li><a href="#inicio" class="nav-link">Inicio</a></li>
+                        <li><a href="#programacion" class="nav-link">Programación</a></li>
+                        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
+                        <li><a href="#galeria" class="nav-link">Galería</a></li>
+                        <li><a href="#contacto" class="nav-link">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-toggle" id="nav-toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="span"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="inicio" class="hero">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h2 class="hero-title">Llegando a tu corazón y más allá de tu imaginación</h2>
+                    <p class="hero-subtitle">Radio Stereo Umachiri - 98.5 FM</p>
+                    <p class="hero-description">Emisora peruana que transmite desde el distrito de Umachiri, provincia Melgar, Puno</p>
+                    
+                    <!-- Live Player -->
+                    <div class="live-player">
+                        <div class="player-container">
+                            <div class="player-info">
+                                <div class="live-indicator">
+                                    <span class="live-dot"></span>
+                                    <span>EN VIVO</span>
+                                </div>
+                                <h3>Radio Stereo Umachiri</h3>
+                                <p>98.5 FM - Melgar, Puno</p>
+                            </div>
+                            
+                            <div class="player-controls">
+                                <button class="play-btn" id="playBtn">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                <div class="volume-control">
+                                    <i class="fas fa-volume-up"></i>
+                                    <input type="range" id="volumeSlider" min="0" max="100" value="50">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <audio id="radioStream" preload="none">
+                            <source src="stream-url-here" type="audio/mpeg">
+                            Tu navegador no soporta el elemento de audio.
+                        </audio>
+                    </div>
+                </div>
+                
+                <div class="hero-image">
+                    <img src="assets/images/radio-studio.jpg" alt="Estudio de Radio Stereo Umachiri">
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="nosotros" class="about">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Acerca de Nosotros</h2>
+                    <p>Conoce más sobre Radio Stereo Umachiri</p>
+                </div>
+                
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>Nuestra Historia</h3>
+                        <p>Radio Stereo Umachiri es una emisora peruana que transmite desde el distrito de Umachiri, provincia Melgar, Puno. Nuestro compromiso es llevar entretenimiento, información y música de calidad a toda la región.</p>
+                        
+                        <div class="about-features">
+                            <div class="feature">
+                                <i class="fas fa-music"></i>
+                                <h4>Música Variada</h4>
+                                <p>La mejor selección musical para todos los gustos</p>
+                            </div>
+                            
+                            <div class="feature">
+                                <i class="fas fa-broadcast-tower"></i>
+                                <h4>Señal Potente</h4>
+                                <p>98.5 FM con cobertura en toda la región</p>
+                            </div>
+                            
+                            <div class="feature">
+                                <i class="fas fa-users"></i>
+                                <h4>Comunidad</h4>
+                                <p>Conectando con nuestra comunidad local</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="about-stats">
+                        <div class="stat">
+                            <h3>98.5</h3>
+                            <p>FM</p>
+                        </div>
+                        <div class="stat">
+                            <h3>24/7</h3>
+                            <p>Transmisión</p>
+                        </div>
+                        <div class="stat">
+                            <h3>100%</h3>
+                            <p>Calidad</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Programming Section -->
+        <section id="programacion" class="programming">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Programación</h2>
+                    <p>Nuestros programas y horarios</p>
+                </div>
+                
+                <div class="programming-grid">
+                    <div class="program-card">
+                        <div class="program-time">06:00 - 10:00</div>
+                        <h3>Buenos Días Umachiri</h3>
+                        <p>El mejor despertar con noticias, música y entretenimiento</p>
+                        <div class="program-host">Conductor: Juan Pérez</div>
+                    </div>
+                    
+                    <div class="program-card">
+                        <div class="program-time">10:00 - 14:00</div>
+                        <h3>Música del Recuerdo</h3>
+                        <p>Los mejores éxitos de todos los tiempos</p>
+                        <div class="program-host">Conductor: María López</div>
+                    </div>
+                    
+                    <div class="program-card">
+                        <div class="program-time">14:00 - 18:00</div>
+                        <h3>Ritmo y Sabor</h3>
+                        <p>Música tropical y cumbia peruana</p>
+                        <div class="program-host">Conductor: Carlos Rodríguez</div>
+                    </div>
+                    
+                    <div class="program-card">
+                        <div class="program-time">18:00 - 22:00</div>
+                        <h3>Noche Romántica</h3>
+                        <p>Baladas y música romántica</p>
+                        <div class="program-host">Conductor: Ana García</div>
+                    </div>
+                    
+                    <div class="program-card">
+                        <div class="program-time">22:00 - 02:00</div>
+                        <h3>Noche de Éxitos</h3>
+                        <p>Los hits más populares del momento</p>
+                        <div class="program-host">Conductor: Roberto Silva</div>
+                    </div>
+                    
+                    <div class="program-card">
+                        <div class="program-time">02:00 - 06:00</div>
+                        <h3>Madrugada Musical</h3>
+                        <p>Música suave para acompañar tu descanso</p>
+                        <div class="program-host">Conductor: Laura Torres</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="galeria" class="gallery">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Galería</h2>
+                    <p>Momentos especiales de Radio Stereo Umachiri</p>
+                </div>
+                
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="assets/images/gallery/studio1.jpg" alt="Estudio de Radio">
+                        <div class="gallery-overlay">
+                            <h3>Estudio Principal</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="assets/images/gallery/event1.jpg" alt="Evento Especial">
+                        <div class="gallery-overlay">
+                            <h3>Evento Comunitario</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="assets/images/gallery/team1.jpg" alt="Equipo de Radio">
+                        <div class="gallery-overlay">
+                            <h3>Nuestro Equipo</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="assets/images/gallery/equipment1.jpg" alt="Equipos">
+                        <div class="gallery-overlay">
+                            <h3>Equipos Profesionales</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="assets/images/gallery/umachiri1.jpg" alt="Umachiri">
+                        <div class="gallery-overlay">
+                            <h3>Nuestra Ciudad</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="assets/images/gallery/antenna1.jpg" alt="Antena">
+                        <div class="gallery-overlay">
+                            <h3>Antena de Transmisión</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contacto" class="contact">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Contacto</h2>
+                    <p>Ponte en contacto con nosotros</p>
+                </div>
+                
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h3>Dirección</h3>
+                                <p>Umachiri, Melgar, Puno, Perú</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h3>Teléfono</h3>
+                                <p>+51 951 391 524</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h3>Email</h3>
+                                <p>info@radiostereoumachiri.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-broadcast-tower"></i>
+                            <div>
+                                <h3>Frecuencia</h3>
+                                <p>98.5 FM</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form">
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <input type="text" id="name" name="name" placeholder="Tu nombre" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <input type="email" id="email" name="email" placeholder="Tu email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <input type="text" id="subject" name="subject" placeholder="Asunto" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <textarea id="message" name="message" placeholder="Tu mensaje" rows="5" required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="assets/images/logo.png" alt="Radio Stereo Umachiri">
+                        <h3>Radio Stereo Umachiri</h3>
+                    </div>
+                    <p>Llegando a tu corazón y más allá de tu imaginación</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#programacion">Programación</a></li>
+                        <li><a href="#nosotros">Nosotros</a></li>
+                        <li><a href="#galeria">Galería</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Redes Sociales</h3>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/StereoUmachiri/" target="_blank">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" target="_blank">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" target="_blank">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Información</h3>
+                    <p><strong>Frecuencia:</strong> 98.5 FM</p>
+                    <p><strong>Ubicación:</strong> Umachiri, Melgar, Puno</p>
+                    <p><strong>Teléfono:</strong> +51 951 391 524</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Radio Stereo Umachiri. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/player.js"></script>
+</body>
+</html> 
