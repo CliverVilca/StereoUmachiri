@@ -48,13 +48,19 @@
         <a href="{{ route('admin.programs') }}" style="background: var(--primary-color); color: white; padding: 15px; text-decoration: none; border-radius: 8px; text-align: center; transition: all 0.3s ease;">
             📻 Gestionar Programas
         </a>
-        <a href="{{ route('admin.messages') }}" style="background: var(--accent-color); color: white; padding: 15px; text-decoration: none; border-radius: 8px; text-align: center; transition: all 0.3s ease;">
+        <a href="{{ route('news.index') }}" style="background: var(--accent-color); color: white; padding: 15px; text-decoration: none; border-radius: 8px; text-align: center; transition: all 0.3s ease;">
+            📰 Gestionar Noticias
+        </a>
+        <a href="{{ route('admin.comments.index') }}" style="background: var(--success-color); color: white; padding: 15px; text-decoration: none; border-radius: 8px; text-align: center; transition: all 0.3s ease;">
+            💬 Gestionar Comentarios
+        </a>
+        <a href="{{ route('admin.messages') }}" style="background: var(--warning-color); color: white; padding: 15px; text-decoration: none; border-radius: 8px; text-align: center; transition: all 0.3s ease;">
             📝 Ver Mensajes
         </a>
-        <a href="{{ route('admin.analytics') }}" style="background: var(--success-color); color: white; padding: 15px; text-decoration: none; border-radius: 8px; text-align: center; transition: all 0.3s ease;">
+        <a href="{{ route('admin.analytics') }}" style="background: var(--secondary-color); color: white; padding: 15px; text-decoration: none; border-radius: 8px; text-align: center; transition: all 0.3s ease;">
             📈 Ver Analytics
         </a>
-        <a href="{{ route('home') }}" style="background: var(--secondary-color); color: white; padding: 15px; text-decoration: none; border-radius: 8px; text-align: center; transition: all 0.3s ease;">
+        <a href="{{ route('home') }}" style="background: var(--primary-color); color: white; padding: 15px; text-decoration: none; border-radius: 8px; text-align: center; transition: all 0.3s ease;">
             🏠 Ver Sitio Web
         </a>
     </div>

@@ -1,4 +1,6 @@
-// Importar estilos
+// Importar Bootstrap JS y CSS
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './bootstrap';
 
 // Navegación móvil

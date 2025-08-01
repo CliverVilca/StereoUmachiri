@@ -100,6 +100,9 @@
             <a href="{{ route('admin.programs') }}" class="admin-nav-item {{ request()->routeIs('admin.programs') ? 'active' : '' }}">
                 📻 Programas
             </a>
+            <a href="{{ route('news.index') }}" class="admin-nav-item {{ request()->routeIs('news.*') ? 'active' : '' }}">
+                📰 Noticias
+            </a>
             <a href="{{ route('admin.messages') }}" class="admin-nav-item {{ request()->routeIs('admin.messages') ? 'active' : '' }}">
                 📝 Mensajes
             </a>
