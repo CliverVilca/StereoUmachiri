@@ -85,7 +85,7 @@
                                         <img src="{{ asset('storage/' . $news->image) }}" alt="{{ $news->title }}" class="card-img-top" style="height:180px; object-fit:cover; border-top-left-radius:14px; border-top-right-radius:14px; width:100%;">
                                         <div class="news-overlay d-flex flex-column justify-content-center align-items-center">
                                             <button type="button" class="btn btn-light btn-sm mb-2" id="zoomBtn{{ $news->id }}"><i class="fas fa-search-plus"></i> Ver imagen</button>
-                                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newsModal{{ $news->id }}"><i class="fas fa-file-alt"></i> Ver noticia</button>
+                                            <a href="{{ route('noticias.detalle', $news->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-file-alt"></i> Ver noticia</a>
                                         </div>
                                     </div>
                                     <div id="fullImgViewer{{ $news->id }}" class="full-img-viewer" style="display:none;">
@@ -132,32 +132,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
-                    <!-- Modales para noticias locales -->
-                    @foreach($localNews as $news)
-                        <div class="modal fade" id="newsModal{{ $news->id }}" tabindex="-1" aria-labelledby="newsModalLabel{{ $news->id }}" aria-hidden="true">
-                          <div class="modal-dialog modal-lg modal-dialog-centered">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h5 class="modal-title" id="newsModalLabel{{ $news->id }}">{{ $news->title }}</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                              </div>
-                              <div class="modal-body">
-                                @if($news->image)
-                                  <img src="{{ asset('storage/' . $news->image) }}" alt="{{ $news->title }}" class="img-fluid mb-3" style="border-radius:12px;max-height:320px;object-fit:cover;">
-                                @endif
-                                <div class="mb-2" style="font-size:0.95rem;color:#667eea;">
-                                  <span><i class="fas fa-user"></i> {{ $news->author }}</span>
-                                  <span class="mx-2">|</span>
-                                  <span><i class="fas fa-calendar"></i> {{ \Carbon\Carbon::parse($news->published_at)->format('d/m/Y') }}</span>
-                                </div>
-                                <div style="font-size:1rem;color:#222;white-space:pre-line;">
-                                  {!! nl2br(e($news->body)) !!}
-                                </div>
-                              </div>
-                            </div>
-                          </div>
                         </div>
                     @endforeach
                 @else
@@ -223,32 +197,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
-                    <!-- Modales para noticias internacionales -->
-                    @foreach($internationalNews as $news)
-                        <div class="modal fade" id="newsModal{{ $news->id }}" tabindex="-1" aria-labelledby="newsModalLabel{{ $news->id }}" aria-hidden="true">
-                          <div class="modal-dialog modal-lg modal-dialog-centered">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h5 class="modal-title" id="newsModalLabel{{ $news->id }}">{{ $news->title }}</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                              </div>
-                              <div class="modal-body">
-                                @if($news->image)
-                                  <img src="{{ asset('storage/' . $news->image) }}" alt="{{ $news->title }}" class="img-fluid mb-3" style="border-radius:12px;max-height:320px;object-fit:cover;">
-                                @endif
-                                <div class="mb-2" style="font-size:0.95rem;color:#667eea;">
-                                  <span><i class="fas fa-user"></i> {{ $news->author }}</span>
-                                  <span class="mx-2">|</span>
-                                  <span><i class="fas fa-calendar"></i> {{ \Carbon\Carbon::parse($news->published_at)->format('d/m/Y') }}</span>
-                                </div>
-                                <div style="font-size:1rem;color:#222;white-space:pre-line;">
-                                  {!! nl2br(e($news->body)) !!}
-                                </div>
-                              </div>
-                            </div>
-                          </div>
                         </div>
                     @endforeach
                 @else

@@ -23,6 +23,8 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-VkzQbYl1eZq9VHtV6nRvWmvMRGsiE9z1FMvx6bMpiKFFitvolG/Gp2gbf28pQ5e0" crossorigin="anonymous">
     <!-- Styles -->
     @vite(['resources/css/app.css'])
     @livewireStyles
@@ -106,6 +108,8 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoA6DQD1KQkQkZXeX2bB9p6Y5Skp1U/hc5KZJp4yl+wh9Kt" crossorigin="anonymous"></script>
     <!-- Scripts -->
     @vite(['resources/js/app.js'])
     @livewireScripts
