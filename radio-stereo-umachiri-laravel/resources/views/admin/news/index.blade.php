@@ -1,68 +1,145 @@
-
 @extends('layouts.admin')
 
 @section('content')
-<div class="admin-card">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-        <h1 style="margin: 0; color: var(--primary-color);"><i class="fas fa-newspaper"></i> Noticias</h1>
-        <a href="{{ route('news.create') }}" class="btn btn-success" style="font-weight: bold; font-size: 1rem; padding: 10px 20px; border-radius: 8px;">
-            <i class="fas fa-plus"></i> Crear Noticia
+<div class="admin-container">
+    <div class="admin-header">
+        <h1><i class="fas fa-newspaper"></i> Gestión de Noticias</h1>
+        <a href="{{ route('admin.noticias.create') }}" class="btn btn-success">
+            <i class="fas fa-plus"></i> Nueva Noticia
         </a>
     </div>
+
     @if(session('success'))
-        <div class="alert alert-success" style="font-size:1rem;">{{ session('success') }}</div>
+        <div class="alert alert-success">
+            <i class="fas fa-check-circle"></i> {{ session('success') }}
+        </div>
     @endif
-    <div class="row" style="display: flex; flex-wrap: wrap; gap: 28px;">
-        @forelse($news as $item)
-            <div class="col-md-4" style="flex: 1 1 320px; max-width: 370px;">
-                <div class="admin-card" style="background: #fff; border: 1px solid #e5e7eb; box-shadow: 0 4px 16px rgba(30,58,138,0.08); transition:box-shadow 0.2s; border-radius:14px; min-height:260px; display:flex; flex-direction:column; justify-content:space-between; position:relative;">
-                    <div style="display: flex; align-items: flex-start; gap: 16px;">
-                        @if($item->image)
-                            <img src="{{ asset('storage/' . $item->image) }}" alt="Imagen" style="width: 80px; height: 80px; object-fit: cover; border-radius: 10px; box-shadow:0 2px 8px rgba(59,130,246,0.10);">
-                        @else
-                            <span style="width:80px; height:80px; background:#e5e7eb; display:flex; align-items:center; justify-content:center; border-radius:10px; color:#888; font-size:2.2rem;">
-                                <i class="fas fa-image"></i>
-                            </span>
-                        @endif
-                        <div style="flex:1;">
-                            <h4 style="margin:0; color:var(--primary-color); font-size:1.13rem; font-weight:700; line-height:1.2; white-space:normal;">{{ $item->title }}</h4>
-                            <span style="font-size:0.97rem; color:#667eea; font-weight:500;"><i class="fas fa-user"></i> {{ $item->author }}</span><br>
-                            <span style="font-size:0.93rem; color:#888;"><i class="fas fa-calendar"></i> {{ \Carbon\Carbon::parse($item->published_at)->format('d/m/Y') }}</span>
-                            <span style="display:inline-block; margin-top:6px; font-size:0.92rem; font-weight:600; padding:4px 14px; border-radius:14px; background:linear-gradient(90deg,#ffb347 0%,#ffcc33 100%); color:#222;">
-                                <i class="fas fa-map-marker-alt"></i> {{ $item->type == 'local' ? 'Local' : 'Internacional' }}
-                            </span>
-                        </div>
-                    </div>
-                    <div style="margin-top:12px; color:#444; font-size:1.02rem; min-height:48px;">
-                        {{ \Illuminate\Support\Str::limit($item->content, 90, '...') }}
-                    </div>
-                    <div style="margin-top:18px; display:flex; gap:10px; align-items:center; justify-content:flex-end;">
-                        <a href="{{ route('news.edit', $item->id) }}" class="btn btn-warning btn-sm" style="font-weight:bold; border-radius:7px;">
-                            <i class="fas fa-edit"></i> Editar
-                        </a>
-                        <form action="{{ route('news.destroy', $item->id) }}" method="POST" style="display:inline-block;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Seguro que deseas eliminar esta noticia?')" style="font-weight:bold; border-radius:7px;">
-                                <i class="fas fa-trash"></i> Eliminar
-                            </button>
-                        </form>
-                    </div>
-                    <div style="position:absolute; top:12px; right:12px;">
-                        <a href="{{ route('news.show', $item->id) }}" class="btn btn-outline-primary btn-sm" style="border-radius:7px; font-weight:500;">
-                            <i class="fas fa-eye"></i> Ver
-                        </a>
-                    </div>
-                </div>
-            </div>
-        @empty
-            <div style="width:100%; text-align:center; color:#888; font-size:1.2rem; margin-top:40px;">
-                <i class="fas fa-info-circle"></i> No hay noticias registradas.
-            </div>
-        @endforelse
-    </div>
-    <div style="margin-top:30px;">
-        {{ $news->links() }}
+
+    <div class="admin-card">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Imagen</th>
+                        <th>Título</th>
+                        <th>Autor</th>
+                        <th>Fecha</th>
+                        <th>Tipo</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($noticias as $item)
+                        <tr>
+                            <td>
+                                @if($item->image)
+                                    <img src="{{ asset('storage/' . $item->image) }}" 
+                                         alt="{{ $item->title }}" 
+                                         style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px;">
+                                @else
+                                    <div style="width: 50px; height: 50px; background: #f3f4f6; 
+                                                display: flex; align-items: center; justify-content: center;
+                                                border-radius: 5px;">
+                                        <i class="fas fa-image" style="color: #9ca3af;"></i>
+                                    </div>
+                                @endif
+                            </td>
+                            <td>{{ $item->title }}</td>
+                            <td>{{ $item->author }}</td>
+                            <td>{{ \Carbon\Carbon::parse($item->published_at)->format('d/m/Y') }}</td>
+                            <td>
+                                <span class="badge badge-{{ $item->type == 'local' ? 'primary' : 'info' }}">
+                                    {{ $item->type == 'local' ? 'Local' : 'Internacional' }}
+                                </span>
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <a href="{{ route('admin.noticias.edit', $item->id) }}" 
+                                       class="btn btn-sm btn-warning">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <form action="{{ route('admin.noticias.destroy', $item->id) }}" 
+                                          method="POST" style="display: inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger"
+                                                onclick="return confirm('¿Estás seguro?')">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="6" class="text-center">
+                                <i class="fas fa-info-circle"></i> No hay noticias registradas
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="d-flex justify-content-center">
+            {{ $noticias->links() }}
+        </div>
     </div>
 </div>
 @endsection
+
+@push('styles')
+<style>
+.admin-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.admin-header h1 {
+    color: var(--primary-color);
+    margin: 0;
+}
+
+.table-responsive {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.table th {
+    background: var(--primary-color);
+    color: white;
+    font-weight: 600;
+    border: none;
+}
+
+.table td {
+    vertical-align: middle;
+    border-color: #e5e7eb;
+}
+
+.btn-group {
+    display: flex;
+    gap: 5px;
+}
+
+.badge {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+}
+
+.alert {
+    border-radius: 8px;
+    border: none;
+}
+</style>
+@endpush

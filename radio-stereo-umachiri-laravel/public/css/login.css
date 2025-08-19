@@ -1,0 +1,91 @@
+/* Variables globales definidas en global.css */
+
+.login-container body,
+.login-container html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Inter', sans-serif; /* Updated font for consistency */
+    background: linear-gradient(to right, #f0f2f5, #e0e7ff); /* Gradient background */
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container .login-form {
+    background: #ffffff;
+    padding: 30px; /* Reduced padding */
+    border-radius: 10px; /* Reduced border radius */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 380px; /* Reduced max width */
+    text-align: center;
+}
+
+.login-container .login-form .logo {
+    margin-bottom: 25px;
+}
+
+.login-container .login-form .logo img {
+    max-width: 150px;
+}
+
+.login-container .login-form h2 {
+    margin-bottom: 15px; /* Reduced margin */
+    color: var(--primary-700);
+    font-weight: 600; /* Reduced font weight */
+    font-size: 20px; /* Reduced font size */
+}
+
+.login-container .form-control {
+    border-radius: 6px; /* Reduced border radius */
+    padding: 10px; /* Reduced padding */
+    border: 1px solid #ced4da;
+    margin-bottom: 15px; /* Reduced margin */
+    transition: all 0.3s ease;
+    background-color: #f8f9fa;
+}
+
+.login-container .form-control:focus {
+    border-color: var(--accent-color, #80bdff);
+    box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, .25);
+}
+
+.login-container .btn-primary {
+    background-color: #007bff; /* Vibrant blue */
+    border: none;
+    border-radius: 8px; /* Reduced border radius */
+    padding: 10px; /* Reduced padding */
+    width: 100%;
+    font-size: 16px; /* Reduced font size */
+    font-weight: 500; /* Reduced font weight */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.login-container .btn-primary:hover {
+    background-color: #0056b3; /* Darker blue */
+    transform: translateY(-2px); /* Reduced hover effect */
+}
+
+.login-container .btn-link {
+    color: var(--secondary-color, #007bff);
+    font-size: 12px; /* Reduced font size */
+    margin-top: 15px; /* Reduced margin */
+    display: inline-block;
+    text-decoration: none;
+}
+
+.login-container .btn-link:hover {
+    text-decoration: underline;
+}
+
+.login-container .invalid-feedback {
+    text-align: left;
+    margin-left: 10px;
+    color: #e3342f;
+    font-size: 12px; /* Reduced font size */
+}

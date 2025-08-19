@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Validator;
 
 class ContactController extends Controller
 {
+    public function index()
+    {
+        return view('contact.index');
+    }
+
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -39,4 +44,4 @@ class ContactController extends Controller
             ], 500);
         }
     }
-} 
+}

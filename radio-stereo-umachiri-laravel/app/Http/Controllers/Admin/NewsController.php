@@ -4,36 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class NewsController extends Controller
 {
-    /**
-     * Vista pública de detalle de noticia
-     */
-    public function detalle($id)
-    {
-        $news = \App\Models\News::findOrFail($id);
-        // Algoritmo mejorado de noticias relacionadas por similitud de palabras clave
-        $keywords = collect(explode(' ', preg_replace('/[^\w\s]/u', '', $news->title)))->filter(function($word) {
-            return mb_strlen($word) > 3;
-        })->take(5)->toArray();
-        $relatedQuery = \App\Models\News::where('id', '!=', $news->id);
-        $relatedQuery->where(function($query) use ($keywords, $news) {
-            foreach ($keywords as $kw) {
-                $query->orWhere('title', 'like', "%$kw%")
-                      ->orWhere('content', 'like', "%$kw%");
-            }
-        });
-        $relatedNews = $relatedQuery->orderBy('published_at', 'desc')->limit(4)->get();
-        return view('noticias.detalle', compact('news', 'relatedNews'));
-    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $news = \App\Models\News::orderBy('published_at', 'desc')->paginate(10);
-        return view('admin.news.index', compact('news'));
+        $noticias = \App\Models\News::orderBy('published_at', 'desc')->paginate(10);
+        return view('admin.news.index', compact('noticias'));
     }
 
     /**
@@ -55,12 +36,13 @@ class NewsController extends Controller
             'author' => 'required|string|max:255',
             'published_at' => 'required|date',
             'type' => 'required|in:local,internacional',
+            'status' => 'required|in:draft,published', // ✅ AGREGAR ESTA VALIDACIÓN
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $imagePath = null;
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('assets/images/news', 'public');
+            $imagePath = $request->file('image')->store('news', 'public');
         }
 
         \App\Models\News::create([
@@ -69,10 +51,11 @@ class NewsController extends Controller
             'author' => $validated['author'],
             'published_at' => $validated['published_at'],
             'type' => $validated['type'],
+            'status' => $validated['status'], // ✅ AGREGAR ESTE CAMPO
             'image' => $imagePath,
         ]);
 
-        return redirect()->route('news.index')->with('success', 'Noticia creada correctamente.');
+        return redirect()->route('admin.noticias.index')->with('success', 'Noticia creada correctamente.');
     }
 
     /**
@@ -80,8 +63,8 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        $news = \App\Models\News::findOrFail($id);
-        return view('admin.news.show', compact('news'));
+        $noticia = \App\Models\News::findOrFail($id);
+        return view('admin.noticias.show', compact('noticia'));
     }
 
     /**
@@ -89,13 +72,14 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        $news = \App\Models\News::findOrFail($id);
-        return view('admin.news.edit', compact('news'));
+        $noticia = \App\Models\News::findOrFail($id);
+        return view('admin.noticias.edit', compact('noticia'));
     }
 
     /**
      * Update the specified resource in storage.
      */
+    // En el método update del NewsController
     public function update(Request $request, $id)
     {
         $news = \App\Models\News::findOrFail($id);
@@ -105,11 +89,23 @@ class NewsController extends Controller
             'author' => 'required|string|max:255',
             'published_at' => 'required|date',
             'type' => 'required|in:local,internacional',
+            'status' => 'required|in:draft,published',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
+        // Manejar eliminación de imagen
+        if ($request->has('remove_image')) {
+            if ($news->image) {
+                Storage::disk('public')->delete($news->image);
+                $news->image = null;
+            }
+        }
+
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('assets/images/news', 'public');
+            if ($news->image) {
+                Storage::disk('public')->delete($news->image);
+            }
+            $imagePath = $request->file('image')->store('news', 'public');
             $news->image = $imagePath;
         }
 
@@ -119,10 +115,10 @@ class NewsController extends Controller
             'author' => $validated['author'],
             'published_at' => $validated['published_at'],
             'type' => $validated['type'],
+            'status' => $validated['status'],
         ]);
 
-        $news->save();
-        return redirect()->route('news.index')->with('success', 'Noticia actualizada correctamente.');
+        return redirect()->route('admin.noticias.index')->with('success', 'Noticia actualizada correctamente.');
     }
 
     /**
@@ -132,9 +128,9 @@ class NewsController extends Controller
     {
         $news = \App\Models\News::findOrFail($id);
         if ($news->image) {
-            \Storage::disk('public')->delete($news->image);
+            Storage::disk('public')->delete($news->image);
         }
         $news->delete();
-        return redirect()->route('news.index')->with('success', 'Noticia eliminada correctamente.');
+        return redirect()->route('admin.noticias.index')->with('success', 'Noticia eliminada correctamente.');
     }
 }

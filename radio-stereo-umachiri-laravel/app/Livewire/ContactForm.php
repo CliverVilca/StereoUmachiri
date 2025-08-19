@@ -48,14 +48,14 @@ class ContactForm extends Component
                 'updated_at' => now()
             ]);
 
-            // Enviar email (opcional - puedes comentar si no tienes email configurado)
-            // Mail::to('admin@radioumachiri.com')
-            //     ->send(new ContactMessage([
-            //         'name' => $this->name,
-            //         'email' => $this->email,
-            //         'subject' => $this->subject,
-            //         'message' => $this->message
-            //     ]));
+            // Enviar email
+            Mail::to('admin@radioumachiri.com')
+                ->send(new ContactMessage([
+                    'name' => $this->name,
+                    'email' => $this->email,
+                    'subject' => $this->subject,
+                    'message' => $this->message
+                ]));
 
             $this->success = true;
             $this->reset(['name', 'email', 'subject', 'message']);
@@ -71,4 +71,4 @@ class ContactForm extends Component
     {
         return view('livewire.contact-form');
     }
-} 
+}
